@@ -1000,5 +1000,5 @@ class Ultima_ThuleApp(MDApp, LoadingScreen, WeatherScreen, ToDoScreen, MovieScre
     def close_dialog(self, obj):
         self.weather_dialog.dismiss()
 
-
-Ultima_ThuleApp().run()
+if __name__ == "__main__":
+    Ultima_ThuleApp().run()
