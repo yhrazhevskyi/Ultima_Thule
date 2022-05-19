@@ -22,7 +22,7 @@ from scipy.sparse import csr_matrix
 from sklearn.neighbors import NearestNeighbors
 from kivymd.uix.list import MDList, TwoLineListItem
 
-Window.size = (350, 600)
+# Window.size = (350, 600)
 
 MainScreen_kv = """
 MDScreen:
