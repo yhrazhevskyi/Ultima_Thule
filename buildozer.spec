@@ -4,7 +4,7 @@
 title = Ultima Thule
 
 # (str) Package name
-package.name = Ultima Thule
+package.name = ultimathule
 
 # (str) Package domain (needed for android/ios packaging)
 package.domain = org.wiseplat
