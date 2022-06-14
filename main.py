@@ -22,7 +22,7 @@ from scipy.sparse import csr_matrix
 from sklearn.neighbors import NearestNeighbors
 from kivymd.uix.list import MDList, TwoLineListItem
 
-# Window.size = (350, 600)
+Window.size = (350, 600)
 
 MainScreen_kv = """
 MDScreen:
@@ -660,6 +660,7 @@ class MovieScreen(Screen):
                                                          n_neighbors=n_movies_to_recommend + 1)
                 rec_movie_indices = sorted(list(zip(indices.squeeze().tolist(), distances.squeeze().tolist())),
                                            key=lambda x: x[1])[:0:-1]
+                # print(rec_movie_indices)
                 for val in rec_movie_indices:
                     movie_idx = self.final_dataset.iloc[val[0]]['movieId']
                     # imdb_id = "tt" + self.links[self.links["movieId"] == str(movie_idx)]["imdbId"].iloc[0]
@@ -667,9 +668,11 @@ class MovieScreen(Screen):
                     self.recommend_frame.append({'Title': self.movies.iloc[idx]['title'].values[0],
                                                  'Genres': self.movies.iloc[idx]['genres'].values[0],
                                                  'Id': self.movies.iloc[idx]['movieId'].values[0]})
+                # print(self.recommend_frame)
                     # self.recommend_frame.append({'Title': self.movies.iloc[idx]['title'].values[0], 'Distance': val[1]})
                     # self.recommend_frame.append({'Title': self.movies.iloc[idx]['title'].values[0], 'Distance': val[1], "imdbId": imdb_id})
-                df = pd.DataFrame(self.recommend_frame, index=range(1, n_movies_to_recommend + 1))
+                # df = pd.DataFrame(self.recommend_frame, index=range(1, n_movies_to_recommend + 1))
+                # print(distances)
                 # return df
 
                 self.set_movie_recommendation(self.recommend_frame)
@@ -985,13 +988,13 @@ class Ultima_ThuleApp(MDApp, LoadingScreen, WeatherScreen, ToDoScreen, MovieScre
 
     def dialog(self):
         if weather["temperature"] >= 18:
-            recommendation = "Light clothes"
-        elif weather["temperature"] >= 5:
-            recommendation = "Autumn clothes"
+            recommendation = "It's pretty hot outside, dress lightly"
+        elif weather["temperature"] >= 8:
+            recommendation = "It's pretty chill outside, dress moderately"
         elif weather["temperature"] >= -5:
-            recommendation = "Winter clothes"
+            recommendation = "It's pretty cold outside, dress warmly"
         else:
-            recommendation = "Very Winter clothes"
+            recommendation = "It's very cold outside, dress in your warmest clothes"
 
         self.weather_dialog = MDDialog(title="Clothes recommendation", text=recommendation,
                                        buttons=[MDFlatButton(text="Close", on_release=self.close_dialog)])
